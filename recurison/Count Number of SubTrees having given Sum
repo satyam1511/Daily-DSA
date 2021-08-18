@@ -8,7 +8,7 @@ int solve(Node *root , int &count , int X)
      if(ls + rs + root->data == X){
      count++;
      }
-     
+      
      return ls + rs + root->data;
 }
 
