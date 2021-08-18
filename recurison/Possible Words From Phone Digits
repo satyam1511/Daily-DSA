@@ -1,0 +1,31 @@
+ static string code[] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+class Solution
+{
+    public:
+    //Function to find list of all words possible by pressing given numbers.
+   
+    
+    void possible(vector<string> &v , string temp , int a[] , int n , int index)
+    {
+        if(index==n)
+        {
+            v.push_back(temp);
+            return ;
+        }
+        
+        for(int i = 0 ; i < code[a[index]].length();i++)
+        {
+            temp = temp + code[a[index]].at(i);
+            possible(v,temp,a,n,index+1);
+            temp = temp.substr(0 , temp.length()-1);
+        }
+    }
+    
+    vector<string> possibleWords(int a[], int N)
+    {
+        //Your code here
+        vector<string> v ;
+        string temp = "";
+        possible(v,temp , a , N , 0);
+        return v;
+    }
