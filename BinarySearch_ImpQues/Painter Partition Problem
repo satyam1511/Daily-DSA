@@ -1,0 +1,48 @@
+ 
+   bool isValid(int arr[] , int n , int k , int max)
+   {
+       ll painter = 1;
+       ll sum = 0 ;
+   
+       for(int i = 0 ; i < n ;i++)
+       {
+           sum += arr[i];
+           
+           if(sum > max){
+           sum = arr[i];
+           painter++;
+           }
+           if(painter > k)
+           return false;
+       }
+       return true;
+   }
+  
+    long long minTime(int arr[], int n, int k)
+    {
+        // code here
+        // return minimum time
+         int start = INT_MIN;
+         ll end = 0 ;
+         for(int i = 0 ; i < n ;i++)
+         {
+             end += arr[i];
+             start = max(arr[i] , start);
+         }
+         ll  res = -1;
+         while(start <= end)
+         {
+             ll mid = start + (end - start)/2;
+             
+             if(isValid(arr , n , k , mid))
+             {
+                 res = mid ;
+                 end = mid - 1;
+             }
+             else
+             {
+                 start = mid + 1;
+             }
+         }
+         return res;
+    }
